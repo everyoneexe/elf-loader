@@ -1,0 +1,45 @@
+name: ELF loader
+
+on:
+  push:
+    paths:
+      - "src/**"
+      - "tests/fixtures/**"
+      - "tests/loader_*"
+      - "tests/run_loader_*"
+      - "Makefile"
+      - ".github/workflows/elf-loader.yml"
+  pull_request:
+    paths:
+      - "src/**"
+      - "tests/fixtures/**"
+      - "tests/loader_*"
+      - "tests/run_loader_*"
+      - "Makefile"
+      - ".github/workflows/elf-loader.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install compiler
+        run: sudo apt-get update && sudo apt-get install -y g++ make binutils
+      - name: Run release suite
+        env:
+          LOADER_STRESS_ITERATIONS: "100"
+        run: make release-test
+
+  sanitizers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install compiler
+        run: sudo apt-get update && sudo apt-get install -y g++ make
+      - name: Run ASan and UBSan
+        run: make sanitizers
