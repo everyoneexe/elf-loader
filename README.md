@@ -395,16 +395,16 @@ processes.
 
 ```mermaid
 flowchart LR
-    CLI[CLI] --> Loader[InProcessElf]
-    CLI --> Proc[Process inspection]
-    Loader --> Parse[ElfImage validation]
-    Loader --> Map[MappedImage page plan]
-    Loader --> Graph[DependencyGraph]
-    Loader --> Reloc[Relocation and lifecycle]
-    Proc --> Maps[/proc maps parser]
-    Proc --> Trace[TraceSession]
-    Proc --> Memory[Remote memory]
-    Proc --> Modules[Remote modules and symbols]
+    CLI["CLI"] --> Loader["InProcessElf"]
+    CLI --> Proc["Process inspection"]
+    Loader --> Parse["ElfImage validation"]
+    Loader --> Map["MappedImage page plan"]
+    Loader --> Graph["DependencyGraph"]
+    Loader --> Reloc["Relocation and lifecycle"]
+    Proc --> Maps["/proc maps parser"]
+    Proc --> Trace["TraceSession"]
+    Proc --> Memory["Remote memory"]
+    Proc --> Modules["Remote modules and symbols"]
     Trace --> Memory
     Maps --> Memory
     Maps --> Modules
