@@ -1,0 +1,6 @@
+FIXTURE_1.0 {
+  global: versioned_value;
+};
+FIXTURE_2.0 {
+  global: versioned_value;
+} FIXTURE_1.0;
